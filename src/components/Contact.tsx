@@ -1,8 +1,9 @@
 
 import { useState, useRef, useEffect } from "react";
-import { Send, Mail, Phone, MapPin } from "lucide-react";
+import { Send, Mail, Phone, MapPin, Github, Linkedin, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -79,8 +80,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">Email</h4>
-                    <a href="mailto:hello@example.com" className="text-muted-foreground hover:text-primary transition-colors">
-                      hello@example.com
+                    <a href="mailto:aliishaqsandho@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                      aliishaqsandho@gmail.com
                     </a>
                   </div>
                 </div>
@@ -91,8 +92,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium mb-1">Phone</h4>
-                    <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                      +1 (234) 567-890
+                    <a href="tel:+923460422988" className="text-muted-foreground hover:text-primary transition-colors">
+                      +92 346 0422988
                     </a>
                   </div>
                 </div>
@@ -104,8 +105,38 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium mb-1">Location</h4>
                     <p className="text-muted-foreground">
-                      San Francisco, CA
+                      Islamabad, Pakistan
                     </p>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-border">
+                  <h4 className="font-medium mb-3">Find me on</h4>
+                  <div className="flex gap-3">
+                    <a 
+                      href="https://github.com/AliIshaqPro" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                    >
+                      <Github className="h-5 w-5 text-primary" />
+                    </a>
+                    <a 
+                      href="https://www.linkedin.com/in/ali-ishaq-sandhu" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                    >
+                      <Linkedin className="h-5 w-5 text-primary" />
+                    </a>
+                    <a 
+                      href="https://www.upwork.com/freelancers/~01ea89981961c95a70?mp_source=share" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                    >
+                      <Globe className="h-5 w-5 text-primary" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -168,18 +199,14 @@ const Contact = () => {
                   ></textarea>
                 </div>
                 
-                <button
+                <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className={cn(
-                    "w-full flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground",
-                    "hover:opacity-90 disabled:opacity-70 transition-all",
-                    "focus:outline-none focus:ring-2 focus:ring-primary/50"
-                  )}
+                  className="w-full"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                   <Send size={16} />
-                </button>
+                </Button>
               </div>
             </form>
           </div>

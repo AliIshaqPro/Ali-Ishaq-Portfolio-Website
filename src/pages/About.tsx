@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
-import { ShieldCheck, LayoutGrid, Code2, Database } from "lucide-react";
+import { ShieldCheck, LayoutGrid, Code2, Database, Server, Globe, Blocks, CodepenIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 const About = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,23 +28,23 @@ const About = () => {
   const services = [
     {
       icon: <Code2 className="w-10 h-10 text-primary" />,
-      title: "Custom Theme Development",
-      description: "Crafting unique WordPress themes tailored to your specific needs and brand identity."
+      title: "WordPress Development",
+      description: "Creating custom themes, plugins, and high-performance WordPress websites with advanced functionality."
     },
     {
-      icon: <LayoutGrid className="w-10 h-10 text-primary" />,
-      title: "Plugin Development",
-      description: "Building custom WordPress plugins to extend functionality and integrate with third-party services."
+      icon: <Blocks className="w-10 h-10 text-primary" />,
+      title: "React Development",
+      description: "Building modern, responsive single-page applications with React, Redux, and related technologies."
     },
     {
-      icon: <Database className="w-10 h-10 text-primary" />,
-      title: "Performance Optimization",
-      description: "Maximizing website speed and efficiency through database optimization and caching strategies."
+      icon: <CodepenIcon className="w-10 h-10 text-primary" />,
+      title: "Ruby on Rails Development",
+      description: "Developing scalable web applications using Ruby on Rails with MVC architecture and RESTful APIs."
     },
     {
-      icon: <ShieldCheck className="w-10 h-10 text-primary" />,
-      title: "Security Implementation",
-      description: "Implementing robust security measures to protect your WordPress site from vulnerabilities."
+      icon: <Server className="w-10 h-10 text-primary" />,
+      title: "DevOps Engineering",
+      description: "Implementing CI/CD pipelines, containerization, and cloud infrastructure management for seamless deployments."
     }
   ];
 
@@ -59,19 +60,75 @@ const About = () => {
           >
             <h1 className="text-3xl md:text-5xl font-bold mb-6 text-gradient-primary">About Me</h1>
             <div className="glass-card p-8 md:p-10 rounded-2xl mb-12">
-              <p className="text-lg mb-6">
-                I'm a Senior WordPress Developer with over 8 years of experience in creating custom themes,
-                plugins, and full-featured websites for clients across various industries.
-              </p>
-              <p className="text-lg mb-6">
-                My development approach focuses on clean, maintainable code and performance optimization.
-                I specialize in building complex WordPress solutions that integrate seamlessly with third-party
-                services and APIs.
-              </p>
-              <p className="text-lg">
-                With expertise in both front-end and back-end development, I deliver WordPress solutions
-                that not only look great but also perform exceptionally well, ensuring the best user experience.
-              </p>
+              <div className="flex flex-col md:flex-row gap-8 mb-8">
+                <div className="md:w-1/3">
+                  <div className="aspect-square rounded-xl overflow-hidden border-2 border-primary/20 shadow-xl">
+                    <img 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" 
+                      alt="Ali Ishaq" 
+                      className="w-full h-full object-cover" 
+                    />
+                  </div>
+                </div>
+                <div className="md:w-2/3">
+                  <h2 className="text-2xl font-bold mb-3">Ali Ishaq</h2>
+                  <p className="text-primary font-medium mb-4">Full Stack Developer</p>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-2">
+                      <Globe className="w-5 h-5 text-primary" />
+                      <span>Islamabad, Pakistan</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CodepenIcon className="w-5 h-5 text-primary" />
+                      <span>Bachelor of Computer Science - Virtual University of Pakistan</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">WordPress</Badge>
+                    <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">React</Badge>
+                    <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">Ruby on Rails</Badge>
+                    <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">DevOps</Badge>
+                    <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">PHP</Badge>
+                    <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">JavaScript</Badge>
+                    <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">Docker</Badge>
+                    <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">AWS</Badge>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-3">
+                    <a href="https://github.com/AliIshaqPro" target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm py-2">
+                      GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/ali-ishaq-sandhu" target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm py-2">
+                      LinkedIn
+                    </a>
+                    <a href="https://www.upwork.com/freelancers/~01ea89981961c95a70?mp_source=share" target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm py-2">
+                      Upwork
+                    </a>
+                    <a href="https://www.fiverr.com/s/0b80y6k" target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm py-2">
+                      Fiverr
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="border-t border-primary/10 pt-8">
+                <p className="text-lg mb-6">
+                  I'm a versatile Full Stack Developer with extensive experience in WordPress, React, Ruby on Rails, and DevOps. 
+                  My approach combines technical expertise with creative problem-solving to deliver robust, scalable, and user-friendly 
+                  digital solutions for clients across various industries.
+                </p>
+                <p className="text-lg mb-6">
+                  In WordPress development, I excel at creating custom themes, plugins, and complex websites that go beyond traditional 
+                  templates. My React projects feature modern UI/UX with state-of-the-art performance optimizations. Using Ruby on Rails, 
+                  I build maintainable, test-driven applications with efficient database designs.
+                </p>
+                <p className="text-lg">
+                  Additionally, my DevOps knowledge enables me to implement CI/CD pipelines, containerization with Docker, and cloud 
+                  infrastructure management, ensuring smooth deployment and operation of web applications.
+                </p>
+              </div>
             </div>
           </motion.div>
 
@@ -82,7 +139,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-3xl md:text-4xl font-bold mb-12 text-center"
             >
-              WordPress Services
+              Services & Expertise
             </motion.h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

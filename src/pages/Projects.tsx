@@ -3,91 +3,129 @@ import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import ProjectCard from "@/components/ProjectCard";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 // Sample project data
 const PROJECTS = [
   {
-    title: "E-commerce Platform",
-    description: "A fully featured e-commerce platform with real-time inventory management and payment processing.",
+    title: "Custom WooCommerce Platform",
+    description: "A fully customized WordPress e-commerce platform with advanced product filtering, custom payment gateways, and integrated inventory management system.",
+    imageSrc: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80",
+    liveUrl: "#",
+    githubUrl: "#",
+    techStack: [
+      { name: "WordPress", color: "bg-blue-100 text-blue-800" },
+      { name: "WooCommerce", color: "bg-purple-100 text-purple-800" },
+      { name: "PHP", color: "bg-indigo-100 text-indigo-800" },
+      { name: "JavaScript", color: "bg-yellow-100 text-yellow-800" },
+    ],
+    category: "wordpress"
+  },
+  {
+    title: "React E-commerce Dashboard",
+    description: "A comprehensive admin dashboard for e-commerce platforms with real-time analytics, order management, and inventory tracking built with React and Redux.",
     imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     liveUrl: "#",
     githubUrl: "#",
     techStack: [
       { name: "React", color: "bg-blue-100 text-blue-800" },
+      { name: "Redux", color: "bg-purple-100 text-purple-800" },
       { name: "Node.js", color: "bg-green-100 text-green-800" },
       { name: "MongoDB", color: "bg-emerald-100 text-emerald-800" },
-      { name: "Stripe", color: "bg-purple-100 text-purple-800" },
     ],
+    category: "react"
   },
   {
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates and team workspace features.",
-    imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
-    liveUrl: "#",
-    githubUrl: "#",
-    techStack: [
-      { name: "TypeScript", color: "bg-blue-100 text-blue-800" },
-      { name: "Next.js", color: "bg-gray-100 text-gray-800" },
-      { name: "PostgreSQL", color: "bg-indigo-100 text-indigo-800" },
-      { name: "Tailwind", color: "bg-cyan-100 text-cyan-800" },
-    ],
-  },
-  {
-    title: "WordPress Business Website",
-    description: "A custom WordPress theme for a corporate client with advanced ACF fields and WooCommerce integration.",
+    title: "Ruby on Rails CRM System",
+    description: "A custom CRM application for a marketing agency with lead tracking, automated follow-ups, and performance analytics built on Ruby on Rails.",
     imageSrc: "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=800&q=80",
     liveUrl: "#",
     githubUrl: "#",
     techStack: [
-      { name: "WordPress", color: "bg-cyan-100 text-cyan-800" },
-      { name: "PHP", color: "bg-purple-100 text-purple-800" },
-      { name: "SCSS", color: "bg-pink-100 text-pink-800" },
-      { name: "ACF Pro", color: "bg-green-100 text-green-800" },
+      { name: "Ruby", color: "bg-red-100 text-red-800" },
+      { name: "Rails", color: "bg-pink-100 text-pink-800" },
+      { name: "PostgreSQL", color: "bg-indigo-100 text-indigo-800" },
+      { name: "Hotwire", color: "bg-orange-100 text-orange-800" },
     ],
+    category: "rails"
   },
   {
-    title: "Real-time Chat Application",
-    description: "A feature-rich chat application with end-to-end encryption, file sharing, and voice/video calls.",
+    title: "WordPress Membership Site",
+    description: "A membership website with tiered access levels, protected content, and integrated payment processing for a professional training organization.",
+    imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
+    liveUrl: "#",
+    githubUrl: "#",
+    techStack: [
+      { name: "WordPress", color: "bg-blue-100 text-blue-800" },
+      { name: "PHP", color: "bg-indigo-100 text-indigo-800" },
+      { name: "MySQL", color: "bg-cyan-100 text-cyan-800" },
+      { name: "jQuery", color: "bg-yellow-100 text-yellow-800" },
+    ],
+    category: "wordpress"
+  },
+  {
+    title: "DevOps Pipeline Solution",
+    description: "Automated CI/CD pipeline setup for a SaaS company, featuring containerized deployment, automated testing, and monitoring systems.",
     imageSrc: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
     liveUrl: "#",
     githubUrl: "#",
     techStack: [
-      { name: "React", color: "bg-blue-100 text-blue-800" },
-      { name: "Firebase", color: "bg-amber-100 text-amber-800" },
-      { name: "WebRTC", color: "bg-red-100 text-red-800" },
-      { name: "Material UI", color: "bg-sky-100 text-sky-800" },
+      { name: "Docker", color: "bg-blue-100 text-blue-800" },
+      { name: "Jenkins", color: "bg-red-100 text-red-800" },
+      { name: "AWS", color: "bg-amber-100 text-amber-800" },
+      { name: "Terraform", color: "bg-purple-100 text-purple-800" },
     ],
+    category: "devops"
   },
   {
-    title: "AI Content Generator",
-    description: "An AI-powered application that generates high-quality content for blogs, social media, and marketing.",
+    title: "React Native Mobile App",
+    description: "A cross-platform mobile application for a health and wellness company with user authentication, progress tracking, and social features.",
     imageSrc: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
     liveUrl: "#",
     githubUrl: "#",
     techStack: [
-      { name: "Python", color: "bg-yellow-100 text-yellow-800" },
-      { name: "TensorFlow", color: "bg-orange-100 text-orange-800" },
-      { name: "React", color: "bg-blue-100 text-blue-800" },
-      { name: "Express", color: "bg-gray-100 text-gray-800" },
+      { name: "React Native", color: "bg-blue-100 text-blue-800" },
+      { name: "Firebase", color: "bg-amber-100 text-amber-800" },
+      { name: "Redux", color: "bg-purple-100 text-purple-800" },
+      { name: "TypeScript", color: "bg-indigo-100 text-indigo-800" },
     ],
+    category: "react"
   },
   {
     title: "Custom WordPress Directory",
-    description: "A directory website with custom post types, taxonomies, and advanced search functionality built on WordPress.",
+    description: "A comprehensive business directory with advanced search, custom taxonomies, and user-submitted listings built on WordPress for a chamber of commerce.",
     imageSrc: "https://images.unsplash.com/photo-1523540939399-141cbff6a8d7?auto=format&fit=crop&w=800&q=80",
     liveUrl: "#",
     githubUrl: "#",
     techStack: [
-      { name: "WordPress", color: "bg-cyan-100 text-cyan-800" },
-      { name: "PHP", color: "bg-purple-100 text-purple-800" },
-      { name: "jQuery", color: "bg-blue-100 text-blue-800" },
-      { name: "MySQL", color: "bg-orange-100 text-orange-800" },
+      { name: "WordPress", color: "bg-blue-100 text-blue-800" },
+      { name: "PHP", color: "bg-indigo-100 text-indigo-800" },
+      { name: "ACF Pro", color: "bg-green-100 text-green-800" },
+      { name: "AJAX", color: "bg-purple-100 text-purple-800" },
     ],
+    category: "wordpress"
+  },
+  {
+    title: "Ruby on Rails Booking System",
+    description: "An appointment scheduling and booking system for a healthcare provider with calendar integration, reminders, and payment processing.",
+    imageSrc: "https://images.unsplash.com/photo-1573495627361-d9b87960b12d?auto=format&fit=crop&w=800&q=80",
+    liveUrl: "#",
+    githubUrl: "#",
+    techStack: [
+      { name: "Ruby", color: "bg-red-100 text-red-800" },
+      { name: "Rails", color: "bg-pink-100 text-pink-800" },
+      { name: "Stimulus", color: "bg-amber-100 text-amber-800" },
+      { name: "Stripe", color: "bg-emerald-100 text-emerald-800" },
+    ],
+    category: "rails"
   },
 ];
 
 const Projects = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [filter, setFilter] = useState("all");
+  const [filteredProjects, setFilteredProjects] = useState(PROJECTS);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -96,6 +134,14 @@ const Projects = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (filter === "all") {
+      setFilteredProjects(PROJECTS);
+    } else {
+      setFilteredProjects(PROJECTS.filter(project => project.category === filter));
+    }
+  }, [filter]);
 
   if (isLoading) {
     return (
@@ -117,13 +163,66 @@ const Projects = () => {
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gradient-primary">Featured Projects</h1>
             <p className="section-subtitle max-w-3xl">
-              A collection of projects that showcase my skills and expertise in web development, 
-              with a focus on WordPress, React, and modern web technologies.
+              A diverse portfolio of projects showcasing my expertise in WordPress, React, Ruby on Rails, 
+              and DevOps implementations across various industries and use cases.
             </p>
+            
+            <div className="flex flex-wrap justify-center gap-3 mt-8">
+              <Button
+                variant={filter === "all" ? "default" : "outline"}
+                onClick={() => setFilter("all")}
+                className={cn(
+                  "rounded-full px-6",
+                  filter === "all" ? "" : "hover:bg-primary/10"
+                )}
+              >
+                All Projects
+              </Button>
+              <Button
+                variant={filter === "wordpress" ? "default" : "outline"}
+                onClick={() => setFilter("wordpress")}
+                className={cn(
+                  "rounded-full px-6",
+                  filter === "wordpress" ? "" : "hover:bg-primary/10"
+                )}
+              >
+                WordPress
+              </Button>
+              <Button
+                variant={filter === "react" ? "default" : "outline"}
+                onClick={() => setFilter("react")}
+                className={cn(
+                  "rounded-full px-6",
+                  filter === "react" ? "" : "hover:bg-primary/10"
+                )}
+              >
+                React
+              </Button>
+              <Button
+                variant={filter === "rails" ? "default" : "outline"}
+                onClick={() => setFilter("rails")}
+                className={cn(
+                  "rounded-full px-6",
+                  filter === "rails" ? "" : "hover:bg-primary/10"
+                )}
+              >
+                Ruby on Rails
+              </Button>
+              <Button
+                variant={filter === "devops" ? "default" : "outline"}
+                onClick={() => setFilter("devops")}
+                className={cn(
+                  "rounded-full px-6",
+                  filter === "devops" ? "" : "hover:bg-primary/10"
+                )}
+              >
+                DevOps
+              </Button>
+            </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.map((project, index) => (
+            {filteredProjects.map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -142,6 +241,12 @@ const Projects = () => {
               </motion.div>
             ))}
           </div>
+          
+          {filteredProjects.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-lg text-muted-foreground">No projects found with the selected filter.</p>
+            </div>
+          )}
         </div>
       </motion.section>
     </Layout>
