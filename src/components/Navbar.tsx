@@ -1,9 +1,11 @@
 
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -20,8 +22,21 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Close mobile menu when route changes
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Check if the link is active based on the current route
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return location.pathname === path;
+    }
+    return location.pathname.startsWith(path);
   };
 
   return (
@@ -35,24 +50,42 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <a href="#" className="text-xl font-bold tracking-tight">
-            Developer<span className="text-primary">.Portfolio</span>
-          </a>
+          <Link to="/" className="text-xl font-bold tracking-tight group">
+            Developer<span className="text-gradient-primary">.Portfolio</span>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="nav-link">
+            <Link 
+              to="/" 
+              className={cn("nav-link", isActive("/") && "text-foreground font-medium")}
+            >
               Home
-            </a>
-            <a href="#projects" className="nav-link">
+            </Link>
+            <Link 
+              to="/about" 
+              className={cn("nav-link", isActive("/about") && "text-foreground font-medium")}
+            >
+              About
+            </Link>
+            <Link 
+              to="/projects" 
+              className={cn("nav-link", isActive("/projects") && "text-foreground font-medium")}
+            >
               Projects
-            </a>
-            <a href="#skills" className="nav-link">
+            </Link>
+            <Link 
+              to="/skills" 
+              className={cn("nav-link", isActive("/skills") && "text-foreground font-medium")}
+            >
               Skills
-            </a>
-            <a href="#contact" className="nav-link">
+            </Link>
+            <Link 
+              to="/contact" 
+              className={cn("nav-link", isActive("/contact") && "text-foreground font-medium")}
+            >
               Contact
-            </a>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -74,34 +107,36 @@ const Navbar = () => {
         )}
       >
         <nav className="flex flex-col items-center space-y-8 p-8">
-          <a
-            href="#"
-            className="text-xl nav-link"
-            onClick={() => setIsMobileMenuOpen(false)}
+          <Link
+            to="/"
+            className={cn("text-xl nav-link", isActive("/") && "text-foreground font-medium")}
           >
             Home
-          </a>
-          <a
-            href="#projects"
-            className="text-xl nav-link"
-            onClick={() => setIsMobileMenuOpen(false)}
+          </Link>
+          <Link
+            to="/about"
+            className={cn("text-xl nav-link", isActive("/about") && "text-foreground font-medium")}
+          >
+            About
+          </Link>
+          <Link
+            to="/projects"
+            className={cn("text-xl nav-link", isActive("/projects") && "text-foreground font-medium")}
           >
             Projects
-          </a>
-          <a
-            href="#skills"
-            className="text-xl nav-link"
-            onClick={() => setIsMobileMenuOpen(false)}
+          </Link>
+          <Link
+            to="/skills"
+            className={cn("text-xl nav-link", isActive("/skills") && "text-foreground font-medium")}
           >
             Skills
-          </a>
-          <a
-            href="#contact"
-            className="text-xl nav-link"
-            onClick={() => setIsMobileMenuOpen(false)}
+          </Link>
+          <Link
+            to="/contact"
+            className={cn("text-xl nav-link", isActive("/contact") && "text-foreground font-medium")}
           >
             Contact
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

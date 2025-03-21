@@ -1,6 +1,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface Skill {
   name: string;
@@ -9,21 +10,42 @@ interface Skill {
 }
 
 const SKILLS: Skill[] = [
+  // WordPress Skills
+  { name: "WordPress Core", level: 95, category: "WordPress" },
+  { name: "Theme Development", level: 92, category: "WordPress" },
+  { name: "Plugin Development", level: 88, category: "WordPress" },
+  { name: "WooCommerce", level: 90, category: "WordPress" },
+  { name: "Advanced Custom Fields", level: 95, category: "WordPress" },
+  { name: "Gutenberg Blocks", level: 90, category: "WordPress" },
+  { name: "WordPress REST API", level: 85, category: "WordPress" },
+  { name: "WordPress Security", level: 88, category: "WordPress" },
+  { name: "PHP", level: 92, category: "Backend" },
+  
+  // Frontend Skills
   { name: "JavaScript", level: 90, category: "Frontend" },
   { name: "TypeScript", level: 85, category: "Frontend" },
   { name: "React", level: 90, category: "Frontend" },
   { name: "Next.js", level: 85, category: "Frontend" },
   { name: "HTML/CSS", level: 95, category: "Frontend" },
   { name: "Tailwind CSS", level: 90, category: "Frontend" },
+  { name: "SCSS/SASS", level: 88, category: "Frontend" },
+  { name: "Responsive Design", level: 95, category: "Frontend" },
+  
+  // Backend Skills
   { name: "Node.js", level: 80, category: "Backend" },
   { name: "Express", level: 80, category: "Backend" },
   { name: "MongoDB", level: 75, category: "Backend" },
+  { name: "MySQL", level: 85, category: "Backend" },
   { name: "PostgreSQL", level: 75, category: "Backend" },
   { name: "GraphQL", level: 70, category: "Backend" },
+  
+  // DevOps Skills
   { name: "Docker", level: 65, category: "DevOps" },
   { name: "Git", level: 85, category: "DevOps" },
   { name: "CI/CD", level: 70, category: "DevOps" },
   { name: "AWS", level: 65, category: "DevOps" },
+  { name: "Server Management", level: 75, category: "DevOps" },
+  { name: "Performance Optimization", level: 85, category: "DevOps" },
 ];
 
 const Skills = () => {
@@ -61,35 +83,30 @@ const Skills = () => {
   return (
     <section id="skills" className="section" ref={sectionRef}>
       <div className="container px-4 mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="section-title">Skills & Expertise</h2>
-          <p className="section-subtitle">
-            My technical skills and expertise in various technologies and tools.
-          </p>
-        </div>
-
-        <div className="flex justify-center mb-10 overflow-x-auto pb-2">
-          <div className="flex gap-2">
+        <div className="flex justify-center mb-10 overflow-x-auto pb-4">
+          <div className="flex gap-2 flex-wrap justify-center">
             {categories.map((category) => (
-              <button
+              <motion.button
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={cn(
-                  "px-4 py-2 rounded-full text-sm transition-all",
+                  "px-4 py-2 rounded-full text-sm transition-all mb-2",
                   activeCategory === category
                     ? "bg-primary text-primary-foreground"
                     : "bg-secondary text-secondary-foreground hover:bg-secondary/70"
                 )}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {category}
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredSkills.map((skill, index) => (
-            <div
+            <motion.div
               key={skill.name}
               className={cn(
                 "glass-card p-5 rounded-lg transition-all duration-500",
@@ -98,22 +115,32 @@ const Skills = () => {
                   : "opacity-0 translate-y-10"
               )}
               style={{ transitionDelay: `${index * 0.05}s` }}
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)" 
+              }}
             >
               <div className="flex justify-between items-center mb-2">
                 <h3 className="font-medium">{skill.name}</h3>
-                <span className="text-sm text-muted-foreground">
+                <span className="text-sm font-medium px-2 py-1 rounded-full bg-primary/10 text-primary">
                   {skill.level}%
                 </span>
               </div>
               <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-primary transition-all duration-1000 ease-out"
-                  style={{
-                    width: isVisible ? `${skill.level}%` : "0%",
+                <motion.div
+                  className="h-full bg-gradient-to-r from-primary/70 to-primary rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ 
+                    width: isVisible ? `${skill.level}%` : "0%" 
                   }}
-                ></div>
+                  transition={{ 
+                    duration: 1,
+                    ease: "easeOut",
+                    delay: 0.2 + index * 0.03
+                  }}
+                ></motion.div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
