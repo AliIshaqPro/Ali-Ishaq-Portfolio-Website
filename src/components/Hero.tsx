@@ -103,16 +103,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <motion.a
-        href="#services"
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-foreground/50 hover:text-foreground transition-colors"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-      >
-        <span className="mb-2 text-sm">Scroll to explore</span>
-        <ArrowDown className="animate-pulse-subtle" size={20} />
-      </motion.a>
+     
     </section>
   );
 };

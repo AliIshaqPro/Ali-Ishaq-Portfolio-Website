@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <div className="text-2xl font-bold">
-              Developer<span className="text-primary">.Portfolio</span>
+              ALI <span className="text-primary">ISHAQ</span>
             </div>
             <p className="text-muted-foreground mt-2 max-w-md">
               Crafting exceptional digital experiences with clean, efficient, and well-structured code.
@@ -58,7 +58,7 @@ const Footer = () => {
         <div className="mt-10 pt-6 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm">
-              © {currentYear} Developer Portfolio. All rights reserved.
+              © {currentYear} ALI ISHAQ. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0">
               <ul className="flex space-x-6">

@@ -51,7 +51,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-xl font-bold tracking-tight group">
-            Developer<span className="text-gradient-primary">.Portfolio</span>
+            ALI<span className="text-gradient-primary"> ISHAQ</span>
           </Link>
 
           {/* Desktop Navigation */}

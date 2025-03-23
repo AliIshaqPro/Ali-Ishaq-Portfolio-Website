@@ -64,7 +64,7 @@ const About = () => {
                 <div className="md:w-1/3">
                   <div className="aspect-square rounded-xl overflow-hidden border-2 border-primary/20 shadow-xl">
                     <img 
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" 
+                      src="https://qnqbuilders.co.uk/wp-content/uploads/2025/03/DSC_0004-scaled.jpg" 
                       alt="Ali Ishaq" 
                       className="w-full h-full object-cover" 
                     />
